@@ -19,11 +19,15 @@ jobs:
           registry: ${{ secrets.REGISTRY_URL }}
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_TOKEN }}
+      - id: repo_name
+        uses: Entepotenz/change-string-case-action@v1
+        with:
+          string: ${{ github.repository }}
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: ${{ secrets.REGISTRY_URL }}/${{ github.repository }}/teia-ui:${{ github.ref_name }}
+          tags: ${{ secrets.REGISTRY_URL }}/${{ steps.repo_name.outputs.lowercase }}/teia-ui:${{ github.ref_name }}
           context: .
           file: ./.github/workflows/Dockerfile
       - name: Restart containers
