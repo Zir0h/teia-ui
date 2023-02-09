@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - "main"
+      - "develop"
 
 jobs:
   build:
@@ -22,9 +23,9 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: ${{ secrets.REGISTRY_URL }}/teia-community/teia-ui:latest
+          tags: ${{ secrets.REGISTRY_URL }}/$GITHUB_REPOSITORY_OWNER/teia-ui:$GITHUB_REF_NAME
           context: .
-          file: ./Dockerfile
+          file: ./.github/workflows/Dockerfile
       - name: Restart containers
         run: |
           curl -H "Authorization: Bearer ${{ secrets.WEBHOOK_TOKEN }}" "${{ secrets.WEBHOOK_URL }}"
