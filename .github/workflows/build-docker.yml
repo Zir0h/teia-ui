@@ -23,7 +23,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: ${{ secrets.REGISTRY_URL }}/$GITHUB_REPOSITORY_OWNER/teia-ui:$GITHUB_REF_NAME
+          tags: ${{ secrets.REGISTRY_URL }}/${{ github.repository }}/teia-ui:${{ github.ref_name }}
           context: .
           file: ./.github/workflows/Dockerfile
       - name: Restart containers
