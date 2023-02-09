@@ -22,7 +22,7 @@ jobs:
       - id: repo_name
         uses: Entepotenz/change-string-case-action-min-dependencies@v1
         with:
-          string: ${{ github.repository }}
+          string: ${{ github.owner }}
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
