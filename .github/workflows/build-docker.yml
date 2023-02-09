@@ -20,7 +20,7 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_TOKEN }}
       - id: repo_name
-        uses: Entepotenz/change-string-case-action@v1
+        uses: Entepotenz/change-string-case-action-min-dependencies@v1
         with:
           string: ${{ github.repository }}
       - name: Build and push
