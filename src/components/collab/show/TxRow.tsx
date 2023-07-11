@@ -38,6 +38,13 @@ export const TxRow = ({ tx, index, onAdd, onRemove }: TxRowProps) => {
     }
   }
 
+  const handleBlur = (event: FocusEvent) => {
+    console.log(event)
+    if (event.type === 'blur') {
+      handleAdd()
+    }
+  }
+
   return tx ? (
     <tr className={styles.row}>
       <td style={{ width: '200px' }}>
@@ -65,6 +72,7 @@ export const TxRow = ({ tx, index, onAdd, onRemove }: TxRowProps) => {
             }
           }}
           onKeyDown={handleKeyDown}
+          onBlur={handleBlur}
         />
       </td>
       {onRemove && (
